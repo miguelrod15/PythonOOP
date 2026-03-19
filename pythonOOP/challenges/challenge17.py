@@ -10,10 +10,17 @@ class Product:
         self.name = name
         self.price = price
     
+    def __str__(self):
+        return f"{self.name} costs €{self.price:.2f}"
+    
     # Methods
     def price_tag(self):
-        panel = Panel(f'{self.name:^30}\n{self.price:^30}', title='Product', width=35)
-        print(panel)
+        content = f"{self.name.center(30, ' ')}"
+        content += f"{'-' * 30}"
+        formated_price = f"€{self.price:,.2f}"
+        content += f"{formated_price.center(30, '.')}"
+        tag = Panel(content, title="Product", width=34)
+        print(tag)
     
 
 # Object declaration
@@ -22,4 +29,3 @@ p2 = Product("PC GAMER", 3000)
 
 p1.price_tag()
 p2.price_tag()
-print(p1.__doc__)
